@@ -34,11 +34,13 @@ $("#topContacts").append(formattedGithub);
 var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 $("#topContacts").append(formattedLocation);
 
-$("#header").append(HTMLskillsStart);
-var i, formattedSkills;
-for (i = 0; i < bio.skills.length; i++) {
-	formattedSkills = HTMLskills.replace("%data%", bio.skills[i]);
-	$("#skills").append(formattedSkills);
+if (bio.skills.length > 0) {
+	$("#header").append(HTMLskillsStart);
+	var formattedSkills;
+	for (var i = 0; i < bio.skills.length; i++) {
+		formattedSkills = HTMLskills.replace("%data%", bio.skills[i]);
+		$("#skills").append(formattedSkills);
+	}
 }
 
 var work = {
@@ -49,9 +51,41 @@ var work = {
 			"location" : "Montreal",
 			"dates" : "February 2011 - Present",
 			"description" : "Created the iOS game titled FCRC: Flying Car Racing Championship, for the Apple App Store: http://www.feedbaccstudios.com"
+		},
+		{
+			"employer" : "DTI Software",
+			"title" : "Integration Programmer",
+			"location" : "Montreal",
+			"dates" : "November 2007 - January 2011",
+			"description" : "Integrated many games (including Tetris, Bejeweled, Street Fighter 2, ...) to run on a wide variety of In-Flight Entertainment consoles (Mas2k, Mas3k, eFX, eX2, EVU, Thales, Archos, ...)."
+		},
+		{
+			"employer" : "CGI",
+			"title" : "Unix Systems Administrator",
+			"location" : "Montreal",
+			"dates" : "July 2005 - November 2007",
+			"description" : "Saw to the proper functioning of many AIX systems for a variety of clients (Yellow Pages, Desjardins, Metro)."
 		}
-	]
+	],
+	"display" : function() {
+		for (job in this.jobs) {
+			$("#workExperience").append(HTMLworkStart);
+			var formattedEmployer = HTMLworkEmployer.replace("%data%", this.jobs[job].employer);
+			var formattedTitle = HTMLworkTitle.replace("%data%", this.jobs[job].title);
+			$(".work-entry:last").append(formattedEmployer + formattedTitle);
+			var formattedDates = HTMLworkDates.replace("%data%", this.jobs[job].dates);
+			$(".work-entry:last").append(formattedDates);
+			var formattedLocation = HTMLworkLocation.replace("%data%", this.jobs[job].location);
+			$(".work-entry:last").append(formattedLocation);
+			var formattedDescription = HTMLworkDescription.replace("%data%", this.jobs[job].description);
+			$(".work-entry:last").append(formattedDescription);
+		}
+	}
 };
+
+work.display();
+
+
 
 var education = {
 	"schools" : [
@@ -90,4 +124,8 @@ var projects = {
 		}
 	]
 };
+
+$(document).click(function(loc) {
+  logClicks(loc.pageX, loc.pageY);
+});
 
