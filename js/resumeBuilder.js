@@ -74,7 +74,7 @@ var work = {
 		}
 	],
 	"display" : function() {
-		for (job in this.jobs) {
+		for (var job in this.jobs) {
 			$("#workExperience").append(HTMLworkStart);
 			var formattedEmployer = HTMLworkEmployer.replace("%data%", this.jobs[job].employer);
 			var formattedTitle = HTMLworkTitle.replace("%data%", this.jobs[job].title);
