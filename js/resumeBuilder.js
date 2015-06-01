@@ -48,7 +48,6 @@ var bio = {
 		}
 	}
 };
-bio.display();
 
 var work = {
 	"jobs" : [
@@ -89,7 +88,6 @@ var work = {
 		}
 	}
 };
-work.display();
 
 var education = {
 	"schools" : [
@@ -158,7 +156,6 @@ var education = {
 		}
 	}
 };
-education.display();
 
 var projects = {
 	"projects" : [
@@ -191,7 +188,6 @@ var projects = {
 		}
 	}
 };
-projects.display();
 
 function inName(oldName) {
     var finalName = oldName;
@@ -203,8 +199,11 @@ function inName(oldName) {
     return finalName;
 }
 
+bio.display();
+work.display();
+education.display();
+projects.display();
 $("#main").append(internationalizeButton);
-
 $("#mapDiv").append(googleMap);
 
 
